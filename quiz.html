@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 320px;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz-container">
+        <h1>JavaScript Quiz</h1>
+        <button onclick="runQuiz()">Start Quiz</button>
+    </div>
+
+
+    <script>
+        const quizQuestions = [
+            { question: "What is the capital of bihar?", answer: "patna" },
+            { question: "cssL stands for?", answer: "cascanding style sheets" },
+            { question: "What is 4 + 4?", answer: "8" },
+            { question: "CSS is used for?", answer: "styling" },
+            { question: "JavaScript is a ___ language?", answer: "programming" }
+        ];
+
+        function normalize(text) {
+            return String(text || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, " ")
+                .trim();
+        }
+
+        function runQuiz() {
+            let score = 0;
+
+            for (let i = 0; i < quizQuestions.length; i++) {
+                let userAns = prompt(quizQuestions[i].question);
+
+                if (!userAns) userAns = "";
+
+                userAns = userAns.toLowerCase().trim();
+
+                if (normalize(userAns) === normalize(quizQuestions[i].answer)) {
+                    alert("Correct!");
+                    score++;
+                } else {
+                    alert("Wrong! Correct answer: " + quizQuestions[i].answer);
+                }
+            }
+
+            alert(`Quiz Completed!\nYour Score: ${score} / ${quizQuestions.length}`);
+        }
+
+        window.runQuiz = runQuiz;
+    </script>
+
+</body>
+</html>
